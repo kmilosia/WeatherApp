@@ -1,0 +1,20 @@
+@import '@fontsource/russo-one';
+@import '@fontsource/roboto';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.logo-font{
+    font-family: 'Russo One', sans-serif !important;
+}
+.gradient-main{
+    background: rgb(204,43,94);
+    background: -moz-linear-gradient(180deg, rgba(204,43,94,1) 0%, rgba(117,58,136,1) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(204,43,94,1) 0%, rgba(117,58,136,1) 100%);
+    background: linear-gradient(180deg, rgba(204,43,94,1) 0%, rgba(117,58,136,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc2b5e",endColorstr="#753a88",GradientType=1);
+}
