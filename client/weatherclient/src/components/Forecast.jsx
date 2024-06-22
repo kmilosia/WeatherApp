@@ -3,19 +3,19 @@ import { IoMenu } from 'react-icons/io5'
 import { useMenuStore } from '../store/menuStore'
 
 const Forecast = () => {
-    const [cityChosen, setCityChosen] = useState(false)
     const setMenu = useMenuStore((state) => state.toggleMenu)
-
+    const menu = useMenuStore((state) => state.menuOpen)
+    const checkMenuToggle = () => {
+        if(menu)setMenu()
+    }
   return (
-    <div className='bg-slate-800 h-screen w-screen p-2'>
-    <div className='w-full flex'>
-        <button onClick={() => setMenu()} className=' text-white h-10 w-10 flex items-center justify-center'>
-            <IoMenu size={30} />
-        </button>
+    <div onClick={() => {checkMenuToggle()}} className='bg-slate-800 h-screen w-screen p-5'>
+        <div className='w-full flex'>
+            <button onClick={() => setMenu()} className='text-white center-elements'>
+                <IoMenu size={30} />
+            </button>
+        </div>
     </div>
-    
-    <h1>Hello</h1>
-</div>
   )
 }
 
