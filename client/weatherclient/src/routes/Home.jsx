@@ -1,38 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import Nav from '../components/Nav'
-
-
-// const getUserLocation = (setLocationAllowed, setPosition) => {
-//     const successCallback = (position) => {
-//         setLocationAllowed(true);
-//         setPosition(position)
-//         console.log(position);
-//       };
-//       const errorCallback = (error) => {
-//         setLocationAllowed(false);
-//       };
-//     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-// }
+import { useMenuStore } from '../store/menuStore';
+import Menu from '../components/Menu';
+import Forecast from '../components/Forecast';
 
 const Home = () => {
+    const menu = useMenuStore((state) => state.menuOpen)
     return (
-        <div className='bg-slate-800 h-screen w-screen p-2'>
-
-        <Nav/>
-        <h1>Hello</h1>
-
+        <div className="relative h-screen overflow-hidden">
+        <div className={`absolute top-0 left-0 h-full w-3/4 transform transition-transform duration-300 ${menu ? 'translate-x-0' : '-translate-x-full'}`}>
+            <Menu />
         </div>
+        <div className={`h-full w-full transition-transform duration-300 ${menu ? 'translate-x-3/4' : ''}`}>
+            <Forecast />
+        </div>
+    </div>
     )
-//     const [locationAllowed, setLocationAllowed] = useState(null);
-//     const [position, setPosition] = useState(null);
-//     useEffect(() => {
-//         getUserLocation(setLocationAllowed, setPosition);
-//       }, []);
-//   return (
-//     <div>
-//       {locationAllowed ? <h1>Allowed</h1> : <h1>Denied</h1>}
-//     </div>
-//   )
+
 }
 
 export default Home

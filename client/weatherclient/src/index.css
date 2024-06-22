@@ -18,3 +18,8 @@ body{
     background: linear-gradient(180deg, rgba(204,43,94,1) 0%, rgba(117,58,136,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc2b5e",endColorstr="#753a88",GradientType=1);
 }
+.center-elements{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
