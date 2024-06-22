@@ -1,12 +1,15 @@
 import React from 'react'
 import { IoSearch } from 'react-icons/io5'
+import { LuSettings } from "react-icons/lu";
 import { useSearchStore } from '../store/searchStore';
 import useLocationStore from '../store/locationStore';
-import MenuLocationForecast from './MenuLocationForecast';
+import MenuLocationForecast from '../components/MenuLocationForecast';
+import { useSettingsStore } from '../store/settingsStore';
 
 const Menu = () => {
   const buttonStyle = 'mx-1 rounded-full p-1 hover:bg-slate-800'
   const setSearchOpen = useSearchStore((state) => state.toggleSearch)
+  const toggleSettings = useSettingsStore((state) => state.toggleSettings)
   const {locations,defaultLocation} = useLocationStore()
   const filteredLocations = defaultLocation ? locations.filter(item => item !== defaultLocation) : locations
   
@@ -14,7 +17,10 @@ const Menu = () => {
     <div className='bg-slate-900 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-900'>
       <div className='flex w-full justify-between items-center mb-6'>
         <h1 className='text-3xl lg:text-4xl font-semibold cursor-default'>Manage locations</h1>
-        <button onClick={() => setSearchOpen()} className={buttonStyle}><IoSearch size={30}/></button>
+        <div className='flex'>
+          <button onClick={() => setSearchOpen()} className={buttonStyle}><IoSearch size={30}/></button>
+          <button onClick={() => toggleSettings()} className={buttonStyle}><LuSettings  size={30}/></button>
+        </div>
       </div>
       {defaultLocation && 
       <div className='flex flex-col'>

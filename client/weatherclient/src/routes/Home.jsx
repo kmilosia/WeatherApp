@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
 import { useMenuStore } from '../store/menuStore';
-import Menu from '../components/Menu';
-import Forecast from '../components/Forecast';
-import LocationSearch from '../components/LocationSearch';
+import Menu from '../views/Menu';
+import Forecast from '../views/Forecast';
+import LocationSearch from '../views/LocationSearch';
 import { useSearchStore } from '../store/searchStore';
 import useLocationStore from '../store/locationStore';
 import useRetrieveForecast from '../hooks/useRetrieveForecast';
 import { useForecastStore } from '../store/forecastStore';
 import { getLastLocationFromLocalStorage } from '../utils/storage';
+import { useSettingsStore } from '../store/settingsStore';
+import Settings from '../views/Settings';
 
 const Home = () => {
     const { setForecast } = useForecastStore()
     const menu = useMenuStore((state) => state.menuOpen)
     const searchOpen = useSearchStore((state) => state.searchOpen)
+    const settingsOpen = useSettingsStore((state) => state.settingsOpen)
     const {defaultLocation, lastLocation, initializeLocations} = useLocationStore()
     const { fetchForecastByCity } = useRetrieveForecast()
     useEffect(() => {
@@ -37,6 +40,7 @@ const Home = () => {
             <Forecast />
         </div>
         {searchOpen && <LocationSearch />}
+        {settingsOpen && <Settings />}
     </div>
     )
 

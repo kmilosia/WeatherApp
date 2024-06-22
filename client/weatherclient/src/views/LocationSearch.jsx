@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { IoArrowBackOutline } from "react-icons/io5"
+import { IoClose } from "react-icons/io5"
 import { useSearchStore } from '../store/searchStore'
 import useCities from '../hooks/useCities'
 import useRetrieveForecast from '../hooks/useRetrieveForecast'
 import { useMenuStore } from '../store/menuStore'
 import { useForecastStore } from '../store/forecastStore'
 import useLocationStore from '../store/locationStore'
+import ViewButton from '../components/ViewButton'
 
 const LocationSearch = () => {
     const {setLastLocation} = useLocationStore()
@@ -42,18 +43,16 @@ const LocationSearch = () => {
     }
 
     return (
-        <div className='absolute top-0 left-0 w-full h-full bg-slate-950 flex flex-col p-5'>
-            <button 
-                onClick={() => setSearchOpen()} 
-                className='text-white mb-4 w-max'>
-                <IoArrowBackOutline size={30} />
-            </button>
+        <div className='absolute top-0 left-0 w-full h-full bg-slate-950 flex flex-col p-8'>
+            <div className='grid-cols-[1fr_auto] grid items-center gap-2'>
             <input 
-                className='w-full p-2 bg-slate-700 text-white rounded-sm' 
+                className='w-full p-2 bg-transparent border border-slate-700 rounded-md text-white' 
                 placeholder='Search by city name'
                 value={query}
                 onChange={handleInputChange}
             />
+            <ViewButton icon={IoClose} action={setSearchOpen} />
+            </div>
             {suggestions.length > 0 && (
                 <ul className='text-white mt-2 bg-slate-700'>
                     {suggestions.map((suggestion, index) => (
