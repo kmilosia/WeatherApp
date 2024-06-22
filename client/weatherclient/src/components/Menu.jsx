@@ -11,7 +11,7 @@ const Menu = () => {
   const filteredLocations = defaultLocation ? locations.filter(item => item !== defaultLocation) : locations
   
   return (
-    <div className='bg-slate-900 text-gray-100 flex flex-col p-8 h-full w-full'>
+    <div className='bg-slate-900 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-900'>
       <div className='flex w-full justify-between items-center mb-6'>
         <h1 className='text-3xl lg:text-4xl font-semibold cursor-default'>Manage locations</h1>
         <button onClick={() => setSearchOpen()} className={buttonStyle}><IoSearch size={30}/></button>
@@ -19,7 +19,7 @@ const Menu = () => {
       {defaultLocation && 
       <div className='flex flex-col'>
         <h2 className=' text-slate-100 font-extralight text-sm'>Default location</h2>
-        <MenuLocationForecast item={defaultLocation}/>
+        <MenuLocationForecast item={defaultLocation} isDefault={true}/>
       </div>
       }
       {filteredLocations &&
@@ -28,7 +28,7 @@ const Menu = () => {
         <ul>
           {filteredLocations.map((item) => {
             return(
-              <MenuLocationForecast item={item} key={item}/>
+              <MenuLocationForecast item={item} key={item} isDefault={false}/>
             )
           })}
         </ul>

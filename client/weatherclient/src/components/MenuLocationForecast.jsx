@@ -7,7 +7,7 @@ import useLocationStore from '../store/locationStore';
 import MenuLocationTooltip from './MenuLocationTooltip';
 import { useForecastStore } from '../store/forecastStore';
 
-const MenuLocationForecast = ({item}) => {
+const MenuLocationForecast = ({item, isDefault}) => {
     const [localForecast, setLocalForecast] = useState({})
     const [showTooltip, setShowTooltip] = useState(false)
     const {setForecast} = useForecastStore()
@@ -31,19 +31,16 @@ const MenuLocationForecast = ({item}) => {
     }
     useEffect(() => {
         fetchForecastByCity(item, setLocalForecast)
-    },[item])
-    useEffect(() => {
-        
         const handleClickOutside = (event) => {
-            if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+            if (tooltipRef.current && !tooltipRef.current.contains(event.target)){
                 setShowTooltip(false);
             }
-        };
-        window.addEventListener('click', handleClickOutside);
+        }
+        window.addEventListener('click', handleClickOutside)
         return () => {
-            window.removeEventListener('click', handleClickOutside);
-        };
-    }, []);
+            window.removeEventListener('click', handleClickOutside)
+        }
+    }, [])
   return (
     <li className='center-elements gap-4 w-full my-2'>
         <div onClick={() => {handleChangeCurrentLocation(item)}} className='w-full rounded-md bg-slate-800 py-6 px-5 font-light text-xl flex justify-between items-center hover:bg-slate-700 cursor-pointer'>
@@ -54,7 +51,7 @@ const MenuLocationForecast = ({item}) => {
         </div>
         <div className="relative" ref={tooltipRef}>
             <button onClick={toggleTooltip}><BsThreeDotsVertical size={30} /></button>
-            {showTooltip && (<MenuLocationTooltip setDefaultLocation={handleSetDefaultLocation} removeLocation={handleRemoveLocation}/>)}
+            {showTooltip && (<MenuLocationTooltip isDefault={isDefault} setDefaultLocation={handleSetDefaultLocation} removeLocation={handleRemoveLocation}/>)}
         </div>
     </li>
     
