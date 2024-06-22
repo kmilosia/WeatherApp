@@ -18,7 +18,7 @@ const useRetrieveForecast = () => {
             console.error(error);
         }
     };
-
+    
     return { fetchForecastByCity };
 };
 
