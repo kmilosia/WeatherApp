@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { isEmpty } from '../utils/isEmpty';
 import { weatherAPI } from '../utils/baseURL';
+import useRetrieveForecast from '../hooks/useRetrieveForecast';
+import { useMenuStore } from '../store/menuStore';
 
 const MenuLocationForecast = ({item}) => {
     const [forecast, setForecast] = useState({})
+    const toggleMenu = useMenuStore((state) => state.toggleMenu)
+    const { fetchForecastByCity } = useRetrieveForecast()
+    const handleChangeCurrentLocation = (cityName) => {
+        fetchForecastByCity(cityName)
+        toggleMenu()
+    }
    
     useEffect(() => {
-        const fetchForecastByCity = async () => {
+        const fetchForecast = async () => {
             try {
                 const response = await fetch(`${weatherAPI}&q=${item}`);
                 if (!response.ok) {
@@ -18,13 +26,13 @@ const MenuLocationForecast = ({item}) => {
                 console.error(error);
             }
         };
-        fetchForecastByCity(item)
+        fetchForecast(item)
     },[])
   return (
-    <li className='rounded-md bg-slate-700 p-4 font-light text-xl cursor-default flex justify-between items-center'>
-        <h1>{item}</h1>
+    <li onClick={() => {handleChangeCurrentLocation(item)}} className='rounded-md bg-slate-800 py-6 px-5 font-light text-xl flex justify-between items-center my-2 hover:bg-slate-700 cursor-pointer'>
+        <h1 className='font-extralight'>{item}</h1>
         {!isEmpty(forecast) &&
-        <p>{forecast.current.temp_c} °C</p>
+        <p className='font-medium'>{forecast.current.temp_c} °C</p>
         }
     </li>
   )
