@@ -6,8 +6,8 @@ import { useForecastStore } from '../store/forecastStore'
 import { isEmpty } from '../utils/isEmpty'
 import useWeekDay from '../hooks/useWeekDay'
 import useTimeFormat from '../hooks/useTimeFormat'
-import { WiRaindrops,WiStrongWind,WiCloudy,WiBarometer,WiShowers,WiDaySunny } from "react-icons/wi";
-
+import WeatherDetails from './WeatherDetails'
+import AddLocationButton from './AddLocationButton'
 
 const Forecast = () => {
     const setMenu = useMenuStore((state) => state.toggleMenu)
@@ -36,11 +36,12 @@ console.log(forecast);
             }
             <div>
                 {!isEmpty(forecast) &&
-                <button><HiPlus size={30} /></button>}
+                <AddLocationButton />
+                }
             </div>
         </div>
         {!isEmpty(forecast) &&
-        <div className='p-5'>
+        <div className='p-5 cursor-default'>
         <div className='flex flex-col my-20'>
             <div className='flex items-center'>
                 <img className='h-10 w-max' src={forecast.current.condition.icon}></img>
@@ -56,38 +57,7 @@ console.log(forecast);
                 <p className='font-extralight'>Details</p>
                 <div className='w-full h-[1px] bg-slate-500'></div>
             </div>
-            <div className="grid grid-cols-3 gap-4 my-3">
-                <div className='center-elements flex-col bg-slate-700 rounded-md p-3'>
-                    <WiBarometer size={50} />
-                    <p className='text-sm font-light'>Pressure</p>
-                    <p>{forecast.current.pressure_mb} mb</p>
-                </div>
-                <div className='center-elements flex-col bg-slate-700 rounded-md p-3'>
-                    <WiCloudy size={50} />
-                    <p className='text-sm font-light'>Pressure</p>
-                    <p>{forecast.current.cloud} %</p>
-                </div>
-                <div className='center-elements flex-col bg-slate-700 rounded-md p-3'>
-                    <WiDaySunny size={50} />
-                    <p className='text-sm font-light'>UV Index</p>
-                    <p>{forecast.current.uv}</p>
-                </div>
-                <div className='center-elements flex-col bg-slate-700 rounded-md p-3'>
-                    <WiRaindrops size={50} />
-                    <p className='text-sm font-light'>Humidity</p>
-                    <p>{forecast.current.humidity} %</p>
-                </div>
-                <div className='center-elements flex-col bg-slate-700 rounded-md p-3'>
-                    <WiShowers size={50} />
-                    <p className='text-sm font-light'>Precipation</p>
-                    <p>{forecast.current.precip_mm} mm</p>
-                </div>
-                <div className='center-elements flex-col bg-slate-700 rounded-md p-3'>
-                    <WiStrongWind size={50} />
-                    <p className='text-sm font-light'>Wind</p>
-                    <p>{forecast.current.wind_kph} km/h</p>
-                </div>
-            </div>
+            <WeatherDetails />
         </div>
         </div>
         }
