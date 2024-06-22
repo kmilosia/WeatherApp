@@ -2,5 +2,9 @@ import { create } from 'zustand'
 
 export const useForecastStore = create((set) => ({
   forecast: {},
-  setForecast: (newForecast) => set(() => ({forecast: newForecast}))
-}))
+  dateString: '',
+  setForecast: (newForecast) => set((state) => ({
+    forecast: newForecast,
+    dateString: newForecast?.location?.localtime || state.dateString,
+  })),
+}));

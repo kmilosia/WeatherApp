@@ -3,7 +3,6 @@ import { IoArrowBackOutline } from "react-icons/io5"
 import { useSearchStore } from '../store/searchStore'
 import useCities from '../hooks/useCities'
 import useRetrieveForecast from '../hooks/useRetrieveForecast'
-import { useForecastStore } from '../store/forecastStore'
 import { useMenuStore } from '../store/menuStore'
 
 const LocationSearch = () => {
@@ -11,7 +10,6 @@ const LocationSearch = () => {
     const setMenu = useMenuStore((state) => state.toggleMenu)
     const { fetchedData } = useCities()
     const { fetchForecastByCity } = useRetrieveForecast()
-    const { setForecast } = useForecastStore()
     const [query, setQuery] = useState('')
     const [suggestions, setSuggestions] = useState([])
 
