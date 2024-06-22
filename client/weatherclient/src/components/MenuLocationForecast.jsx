@@ -8,11 +8,14 @@ import MenuLocationTooltip from './MenuLocationTooltip';
 import { useForecastStore } from '../store/forecastStore';
 import useWeekDay from '../hooks/useWeekDay';
 import useTimeFormat from '../hooks/useTimeFormat';
+import { useSettingsStore } from '../store/settingsStore';
+import UnitsDegreesSpan from './UnitsDegreesSpan';
 
 const MenuLocationForecast = ({item, isDefault}) => {
     const [localForecast, setLocalForecast] = useState({})
     const [showTooltip, setShowTooltip] = useState(false)
     const {setForecast} = useForecastStore()
+    const {units} = useSettingsStore()
     const {setLastLocation, setDefaultLocation, removeLocation} = useLocationStore()
     const toggleMenu = useMenuStore((state) => state.toggleMenu)
     const { fetchForecastByCity } = useRetrieveForecast()
@@ -56,8 +59,8 @@ const MenuLocationForecast = ({item, isDefault}) => {
             </div>
             {!isEmpty(localForecast) && 
             <div className='flex flex-col items-end'>
-                <p className='font-light text-3xl flex items-center mb-1'><img className='h-10 mr-1' src={localForecast.current.condition.icon}/>{localForecast.current.temp_c} <span className='ml-1'> °C</span></p>
-                <p className='text-xs font-light flex items-start'>Feels like {localForecast.current.feelslike_c} <span className='ml-1'> °C</span></p>
+                <p className='font-light text-3xl flex items-center mb-1'><img className='h-10 mr-1' src={localForecast.current.condition.icon}/>{units === 'Metric' ? localForecast.current.temp_c : localForecast.current.temp_f} <UnitsDegreesSpan /></p>
+                <p className='text-xs font-light flex items-start'>Feels like {units === 'Metric' ? localForecast.current.feelslike_c : localForecast.current.feelslike_f} <UnitsDegreesSpan /></p>
             </div>
             }
         </div>
