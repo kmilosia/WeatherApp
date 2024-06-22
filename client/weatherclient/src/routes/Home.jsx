@@ -6,23 +6,27 @@ import LocationSearch from '../components/LocationSearch';
 import { useSearchStore } from '../store/searchStore';
 import useLocationStore from '../store/locationStore';
 import useRetrieveForecast from '../hooks/useRetrieveForecast';
-import { useDefaultLocationStore } from '../store/defaultLocationStore';
+import { useForecastStore } from '../store/forecastStore';
+import { getLastLocationFromLocalStorage } from '../utils/storage';
 
 const Home = () => {
-    const menu = useMenuStore((state) => state.menuOpen)
-    const searchOpen = useSearchStore((state) => state.searchOpen)
-    const initializeLocations = useLocationStore((state) => state.initializeLocations)
-    const initializeDefaultLocations = useDefaultLocationStore((state) => state.initializeLocations)
-    const {defaultLocation, lastLocation} = useDefaultLocationStore()
+    const { setForecast } = useForecastStore()
+    const {menu} = useMenuStore()
+    const {searchOpen} = useSearchStore()
+    const {defaultLocation, lastLocation, initializeLocations} = useLocationStore()
     const { fetchForecastByCity } = useRetrieveForecast()
     useEffect(() => {
         initializeLocations()
-        initializeDefaultLocations()
         if(defaultLocation){
-            fetchForecastByCity(defaultLocation)
+            fetchForecastByCity(defaultLocation, setForecast)
         }else if(!defaultLocation && lastLocation){
-            fetchForecastByCity(lastLocation)
-        }else{}
+            fetchForecastByCity(lastLocation, setForecast)
+        }else{
+            const location = getLastLocationFromLocalStorage()
+            if(location){
+                fetchForecastByCity(location, setForecast)
+            }
+        }
     },[])
     return (
     <div className="relative h-screen overflow-hidden">
@@ -35,7 +39,6 @@ const Home = () => {
         {searchOpen && <LocationSearch />}
     </div>
     )
-
 }
 
 export default Home

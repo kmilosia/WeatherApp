@@ -4,8 +4,12 @@ import { useSearchStore } from '../store/searchStore'
 import useCities from '../hooks/useCities'
 import useRetrieveForecast from '../hooks/useRetrieveForecast'
 import { useMenuStore } from '../store/menuStore'
+import { useForecastStore } from '../store/forecastStore'
+import useLocationStore from '../store/locationStore'
 
 const LocationSearch = () => {
+    const {setLastLocation} = useLocationStore()
+    const { setForecast } = useForecastStore()
     const setSearchOpen = useSearchStore((state) => state.toggleSearch)
     const setMenu = useMenuStore((state) => state.toggleMenu)
     const { fetchedData } = useCities()
@@ -32,7 +36,8 @@ const LocationSearch = () => {
 
     const handleSuggestionClick = (cityName) => {
         setMenu()
-        fetchForecastByCity(cityName)
+        fetchForecastByCity(cityName, setForecast)
+        setLastLocation(cityName)
         setSearchOpen()
     }
 

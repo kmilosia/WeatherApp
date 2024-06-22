@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { IoMenu } from 'react-icons/io5'
-import { HiPlus } from "react-icons/hi"
 import { useMenuStore } from '../store/menuStore'
 import { useForecastStore } from '../store/forecastStore'
 import { isEmpty } from '../utils/isEmpty'

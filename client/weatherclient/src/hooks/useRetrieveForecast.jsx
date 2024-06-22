@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react';
 import { weatherAPI } from '../utils/baseURL';
-import { useForecastStore } from '../store/forecastStore'
 
 const useRetrieveForecast = () => {
-    const { setForecast } = useForecastStore()
-
-    const fetchForecastByCity = async (cityName) => {
+    const fetchForecastByCity = async (cityName, setForecast) => {
         try {
             const response = await fetch(`${weatherAPI}&q=${cityName}`);
             if (!response.ok) {
