@@ -5,24 +5,24 @@ import { useForecastStore } from '../store/forecastStore'
 import { isEmpty } from '../utils/isEmpty'
 import useWeekDay from '../hooks/useWeekDay'
 import useTimeFormat from '../hooks/useTimeFormat'
-import WeatherDetails from './WeatherDetails'
 import AddLocationButton from './AddLocationButton'
+import { WiRaindrops,WiStrongWind,WiCloudy,WiBarometer,WiShowers,WiDaySunny } from "react-icons/wi";
+import WeatherDetailContainer from './WeatherDetailContainer';
 
 const Forecast = () => {
-    const setMenu = useMenuStore((state) => state.toggleMenu)
-    const menu = useMenuStore((state) => state.menuOpen)
+    const {menuOpen, toggleMenu} = useMenuStore()
     const forecast = useForecastStore((state) => state.forecast)
     const dateString = useForecastStore((state) => state.dateString)
     const dayOfWeek = useWeekDay(dateString)
     const time = useTimeFormat(dateString)
     const checkMenuToggle = () => {
-        if(menu) setMenu()
+        if(menuOpen) toggleMenu()
     }
-console.log(forecast);
+
   return (
-    <div onClick={() => {checkMenuToggle()}} className='bg-slate-800 h-screen w-screen p-5 text-white'>
+    <div onClick={() => {checkMenuToggle()}} className='bg-slate-800 h-screen w-screen p-8 text-white'>
         <div className='w-full flex justify-between'>
-            <button onClick={(e) => {e.stopPropagation(); setMenu()}} className='text-white center-elements h-max'>
+            <button onClick={(e) => {e.stopPropagation(); toggleMenu()}} className='text-white center-elements h-max'>
                 <IoMenu size={30} />
             </button>
             {!isEmpty(forecast) && 
@@ -34,9 +34,7 @@ console.log(forecast);
             </div>
             }
             <div>
-                {!isEmpty(forecast) &&
-                <AddLocationButton />
-                }
+                {!isEmpty(forecast) && <AddLocationButton cityName={forecast?.location?.name}/>}
             </div>
         </div>
         {!isEmpty(forecast) &&
@@ -56,7 +54,14 @@ console.log(forecast);
                 <p className='font-extralight'>Details</p>
                 <div className='w-full h-[1px] bg-slate-500'></div>
             </div>
-            <WeatherDetails />
+            <div className="grid grid-cols-3 gap-4 my-3">
+                <WeatherDetailContainer icon={WiBarometer} label="Pressure" value={`${forecast.current.pressure_mb} mb`} />
+                <WeatherDetailContainer icon={WiCloudy} label="Cloud" value={`${forecast.current.cloud} %`} />
+                <WeatherDetailContainer icon={WiDaySunny} label="UV Index" value={forecast.current.uv} />
+                <WeatherDetailContainer icon={WiRaindrops} label="Humidity" value={`${forecast.current.humidity} %`} />
+                <WeatherDetailContainer icon={WiShowers} label="Precipitation" value={`${forecast.current.precip_mm} mm`} />
+                <WeatherDetailContainer icon={WiStrongWind} label="Wind" value={`${forecast.current.wind_kph} km/h`} />
+            </div>
         </div>
         </div>
         }

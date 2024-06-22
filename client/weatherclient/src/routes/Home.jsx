@@ -11,8 +11,8 @@ import { getLastLocationFromLocalStorage } from '../utils/storage';
 
 const Home = () => {
     const { setForecast } = useForecastStore()
-    const {menu} = useMenuStore()
-    const {searchOpen} = useSearchStore()
+    const menu = useMenuStore((state) => state.menuOpen)
+    const searchOpen = useSearchStore((state) => state.searchOpen)
     const {defaultLocation, lastLocation, initializeLocations} = useLocationStore()
     const { fetchForecastByCity } = useRetrieveForecast()
     useEffect(() => {
@@ -39,6 +39,7 @@ const Home = () => {
         {searchOpen && <LocationSearch />}
     </div>
     )
+
 }
 
 export default Home

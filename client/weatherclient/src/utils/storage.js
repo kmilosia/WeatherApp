@@ -15,3 +15,7 @@ export const getLastLocationFromLocalStorage = () => {
     const storedLocations = JSON.parse(localStorage.getItem('locations')) || []
     return storedLocations.length > 0 ? storedLocations[storedLocations.length - 1] : ''
 }
+export const checkCityExists = (cityName) => {
+    const storedLocations = JSON.parse(localStorage.getItem('locations')) || []
+    return storedLocations.includes(cityName)
+};

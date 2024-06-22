@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { citiesAPI } from '../utils/baseURL'
 
 const useCities = () => {

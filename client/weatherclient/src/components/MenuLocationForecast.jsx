@@ -9,11 +9,10 @@ import { useForecastStore } from '../store/forecastStore';
 
 const MenuLocationForecast = ({item}) => {
     const [localForecast, setLocalForecast] = useState({})
-    const {setForecast} = useForecastStore()
-    const {setLastLocation, setDefaultLocation} = useLocationStore()
     const [showTooltip, setShowTooltip] = useState(false)
+    const {setForecast} = useForecastStore()
+    const {setLastLocation, setDefaultLocation, removeLocation} = useLocationStore()
     const toggleMenu = useMenuStore((state) => state.toggleMenu)
-    const removeLocation = useLocationStore((state) => state.removeLocation)
     const { fetchForecastByCity } = useRetrieveForecast()
     const tooltipRef = useRef(null)
     const handleChangeCurrentLocation = (cityName) => {

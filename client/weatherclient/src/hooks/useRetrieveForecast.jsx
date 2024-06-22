@@ -3,19 +3,18 @@ import { weatherAPI } from '../utils/baseURL';
 const useRetrieveForecast = () => {
     const fetchForecastByCity = async (cityName, setForecast) => {
         try {
-            const response = await fetch(`${weatherAPI}&q=${cityName}`);
+            const response = await fetch(`${weatherAPI}&q=${cityName}`)
             if (!response.ok) {
-                console.log('Failed to fetch weather forecast');
-                throw new Error('Failed to fetch weather forecast');
+                console.log('Failed to fetch weather forecast')
             }
-            const data = await response.json();
+            const data = await response.json()
             setForecast(data)
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
     
-    return { fetchForecastByCity };
-};
+    return { fetchForecastByCity }
+}
 
 export default useRetrieveForecast;

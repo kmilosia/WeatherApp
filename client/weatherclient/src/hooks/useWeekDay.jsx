@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const useWeekDay = (dateString) => {
     const [dayOfWeek, setDayOfWeek] = useState('')
@@ -10,7 +10,7 @@ const useWeekDay = (dateString) => {
         setDayOfWeek(dayName)
       }, [dateString])
     
-      return dayOfWeek
-    }
+    return dayOfWeek
+}
 
 export default useWeekDay
