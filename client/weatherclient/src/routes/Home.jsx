@@ -41,6 +41,7 @@ const Home = () => {
         </div>
         {searchOpen && <LocationSearch />}
         {settingsOpen && <Settings />}
+        
     </div>
     )
 
