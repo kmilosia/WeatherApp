@@ -18,13 +18,13 @@ const Menu = () => {
       </div>
       {defaultLocation && 
       <div className='flex flex-col'>
-        <h2 className=' text-slate-100 font-extralight text-sm'>Default location</h2>
+        <h2 className=' text-slate-100 font-extralight text-sm cursor-default'>Default location</h2>
         <MenuLocationForecast item={defaultLocation} isDefault={true}/>
       </div>
       }
       {filteredLocations &&
       <div className='flex flex-col'>
-        {defaultLocation && <h2 className='mt-4 text-slate-100 font-extralight text-sm'>Other locations</h2>}
+        {defaultLocation && <h2 className='mt-4 text-slate-100 font-extralight text-sm cursor-default'>Other locations</h2>}
         <ul>
           {filteredLocations.map((item) => {
             return(
