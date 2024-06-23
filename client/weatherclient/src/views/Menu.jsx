@@ -8,7 +8,7 @@ import { useSettingsStore } from '../store/settingsStore';
 import { useMenuStore } from '../store/menuStore';
 
 const Menu = () => {
-  const buttonStyle = 'mx-1 rounded-full p-1 hover:bg-slate-800'
+  const buttonStyle = 'mx-1 rounded-full p-1 hover:bg-blue-900'
   const setSearchOpen = useSearchStore((state) => state.toggleSearch)
   const {toggleSettings,scrollbarVisibility} = useSettingsStore()
   const {locations,defaultLocation,currentLocation} = useLocationStore()
@@ -16,7 +16,7 @@ const Menu = () => {
   const filteredLocations = defaultLocation ? locations.filter(item => item !== defaultLocation) : locations
   
   return (
-    <div className={`backdrop-blur-md bg-white/10 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto ${scrollbarVisibility ? 'scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50' : 'scrollbar-none'}`}>
+    <div className={`backdrop-blur-md bg-white/5 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto ${scrollbarVisibility ? 'scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50' : 'scrollbar-none'}`}>
       <div className='flex w-full justify-between items-center mb-6'>
         <h1 className='text-3xl lg:text-4xl font-semibold cursor-default'>Manage locations</h1>
         <div className='flex'>

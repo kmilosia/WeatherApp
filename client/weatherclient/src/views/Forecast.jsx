@@ -9,29 +9,27 @@ import AddLocationButton from '../components/AddLocationButton';
 import { WiRaindrops, WiStrongWind, WiCloudy, WiBarometer, WiShowers, WiDaySunny } from "react-icons/wi";
 import WeatherDetailContainer from '../components/WeatherDetailContainer';
 import { useSettingsStore } from '../store/settingsStore';
-import { determineWeatherGradient } from '../utils/weatherGradient';
 
 const Forecast = () => {
     const { menuOpen, toggleMenu } = useMenuStore()
     const { units } = useSettingsStore()
-    const forecast = useForecastStore((state) => state.forecast)
-    const dateString = useForecastStore((state) => state.dateString)
+    const {dateString,forecast,backgroundURL,backgroundText} = useForecastStore()
     const dayOfWeek = useWeekDay(dateString)
     const time = useTimeFormat(dateString)
-    const [gradientClass, setGradientClass] = useState('bg-slate-800')
     const checkMenuToggle = () => {
         if (menuOpen) toggleMenu()
     }
-    useEffect(() => {
-        if (!isEmpty(forecast) && forecast.current.condition.text && dateString) {
-            const calculatedGradientClass = determineWeatherGradient(forecast.current.condition.text, dateString)
-            setGradientClass(calculatedGradientClass)
-        }
-        console.log(gradientClass)
-    },[forecast])
 
     return (
-        <div onClick={checkMenuToggle} className={`${gradientClass} h-screen w-screen p-8 text-white`}>
+        <div onClick={checkMenuToggle} className=' h-screen w-screen p-8 text-white' 
+        style={{
+            backgroundImage: `url(${backgroundURL})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            backgroundBlendMode: 'overlay'
+        }}>
             <div className='w-full flex justify-between'>
                 <button onClick={(e) => { e.stopPropagation(); toggleMenu() }} className='text-white center-elements h-max'>
                     <IoMenu size={30} />
@@ -61,7 +59,7 @@ const Forecast = () => {
                     <div className='flex flex-col w-full cursor-default'>
                         <div className='flex w-full items-center gap-3'>
                             <p className='font-extralight'>Details</p>
-                            <div className='w-full h-[1px] bg-white bg-opacity-50'></div>
+                            <div className='w-full h-[1px] bg-white/30'></div>
                         </div>
                         <div className="grid grid-cols-3 gap-4 my-3">
                             <WeatherDetailContainer icon={WiBarometer} label="Pressure" value={`${units === 'Metric' ? forecast.current.pressure_mb : forecast.current.pressure_in} ${units === 'Metric' ? ' mb' : ' in'}`} />
@@ -74,9 +72,14 @@ const Forecast = () => {
                     </div>
                 </div>
             }
-            <footer className='mt-4 mx-1 fixed bottom-2'>
-                <p className='inline text-sm cursor-default'>Forecast by</p>
-                <a target='_blank' rel="noopener noreferrer" className='inline text-green-600 font-semibold text-sm hover:text-green-700' href="https://www.weatherapi.com/"> WeatherAPI.com</a>
+            <footer className='mt-4 mx-1 fixed bottom-2 left-2 flex justify-between w-[98%]'>
+                <div className='flex items-center'>
+                    <p className='inline text-sm cursor-default mr-1 text-white/50'>Forecast by </p>
+                    <a target='_blank' className='inline text-green-600/50 font-semibold text-sm hover:text-green-500/50' href="https://www.weatherapi.com/"> WeatherAPI.com</a>
+                </div>
+                <div className='flex items-center text-white/50 text-sm cursor-default'>
+                    <p>{backgroundText}</p>
+                </div>
             </footer>
         </div>
     );

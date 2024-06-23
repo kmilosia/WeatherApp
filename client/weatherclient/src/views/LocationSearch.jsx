@@ -36,7 +36,6 @@ const LocationSearch = () => {
     }
 
     const handleSuggestionClick = (cityName) => {
-        setMenu()
         fetchForecastByCity(cityName, setForecast)
         setLastLocation(cityName)
         setSearchOpen()
@@ -54,11 +53,11 @@ const LocationSearch = () => {
             <ViewButton icon={IoClose} action={setSearchOpen} />
             </div>
             {suggestions.length > 0 && (
-                <ul className='text-white mt-2 bg-slate-700'>
+                <ul className='text-white mt-2 bg-slate-800 rounded-md'>
                     {suggestions.map((suggestion, index) => (
                         <li
                             key={index}
-                            className='p-3 hover:bg-slate-800 cursor-pointer'
+                            className='p-3 rounded-md hover:bg-slate-900 cursor-pointer'
                             onClick={() => handleSuggestionClick(suggestion.city)}
                         >
                             {suggestion.city}, {suggestion.country}
