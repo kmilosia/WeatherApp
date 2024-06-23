@@ -32,7 +32,7 @@ const Menu = () => {
       }
       {defaultLocation && 
       <div className='flex flex-col'>
-        <h2 className=' text-slate-100 font-extralight text-sm cursor-default'>Default location</h2>
+        <h2 className=' text-slate-100 font-extralight text-sm cursor-default mt-2'>Default location</h2>
         <MenuLocationForecast item={defaultLocation} isDefault={true} isCurrent={false}/>
       </div>
       }

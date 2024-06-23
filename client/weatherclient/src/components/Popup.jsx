@@ -6,7 +6,7 @@ const Popup = ({id, message}) => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             removePopup(id)
-        }, 2000)
+        }, 3000)
         return () => clearTimeout(timeout)
     },[id,removePopup])
   return (

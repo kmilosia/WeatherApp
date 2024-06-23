@@ -5,20 +5,12 @@ const usePopupStore = create((set) => ({
   nextId: 1,
   addPopup: (message) => {
     set((state) => ({
-      popups: [
-        ...state.popups,
-        {
-          id: state.nextId,
-          message,
-        },
-      ],
+      popups: [...state.popups, { id: state.nextId, message }],
       nextId: state.nextId + 1,
     }))
   },
   removePopup: (id) => {
-    set((state) => ({
-      popups: state.popups.filter((popup) => popup.id !== id),
-    }))
+    set((state) => ({ popups: state.popups.filter((popup) => popup.id !== id)}))
   },
 }))
 

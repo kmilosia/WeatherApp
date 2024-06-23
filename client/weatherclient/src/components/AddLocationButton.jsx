@@ -14,10 +14,10 @@ const AddLocationButton = () => {
   const handleLocation = () => {
     if (!exists) {
       addLocation(forecast.location.name)
-      addPopup("Location has been added to your list")
+      addPopup("Location has been added to your list!")
     }else{
       removeLocation(forecast.location.name)
-      addPopup("Location has been removed from your list")
+      addPopup("Location has been removed from your list!")
     }
   }
 

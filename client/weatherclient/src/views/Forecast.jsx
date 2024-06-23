@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IoMenu } from 'react-icons/io5';
 import { useMenuStore } from '../store/menuStore';
 import { useForecastStore } from '../store/forecastStore';

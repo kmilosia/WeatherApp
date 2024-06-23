@@ -15,7 +15,7 @@ import PopupStack from '../views/PopupStack';
 
 const Home = () => {
     const { setForecast } = useForecastStore()
-    const menu = useMenuStore((state) => state.menuOpen)
+    const menuOpen = useMenuStore((state) => state.menuOpen)
     const searchOpen = useSearchStore((state) => state.searchOpen)
     const settingsOpen = useSettingsStore((state) => state.settingsOpen)
     const {defaultLocation, lastLocation, initializeLocations, currentLocation} = useLocationStore()
@@ -38,8 +38,8 @@ const Home = () => {
         }
     },[])
     return (
-        <div className="relative h-screen overflow-hidden">
-        <div className={`fixed top-0 left-0 h-full w-3/4 z-40 transform transition-transform duration-300 ${menu ? 'translate-x-0' : '-translate-x-full'}`}>
+    <div className="relative h-screen overflow-hidden">
+        <div className={`fixed top-0 left-0 h-full w-3/4 z-40 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
             <Menu />
         </div>
         <div className={`h-full w-full transition-transform duration-300`}>
@@ -48,7 +48,6 @@ const Home = () => {
         {searchOpen && <LocationSearch />}
         {settingsOpen && <Settings />}
         <PopupStack />
-        
     </div>
     )
 
