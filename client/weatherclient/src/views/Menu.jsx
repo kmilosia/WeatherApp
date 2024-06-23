@@ -27,7 +27,7 @@ const Menu = () => {
       {currentLocation && 
       <div className='flex flex-col'>
         <h2 className=' text-slate-100 font-extralight text-sm cursor-default'>Current location</h2>
-        <MenuLocationForecast isDefault={true} isCurrent={true}/>
+        <MenuLocationForecast isDefault={false} isCurrent={true}/>
       </div>
       }
       {defaultLocation && 

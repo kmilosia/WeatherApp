@@ -37,7 +37,7 @@ const MenuLocationForecast = ({item = null, isDefault, isCurrent}) => {
         }
     }
     const handleSetDefaultLocation = () => {
-        setDefaultLocation(item)
+        setDefaultLocation(localForecast.location.name)
     }
     const toggleTooltip = () => {
         setShowTooltip(!showTooltip);
@@ -75,7 +75,7 @@ const MenuLocationForecast = ({item = null, isDefault, isCurrent}) => {
         </div>
         <div className="relative" ref={tooltipRef}>
             <button onClick={toggleTooltip}><BsThreeDotsVertical size={30} /></button>
-            {showTooltip && (<MenuLocationTooltip isDefault={isDefault} setDefaultLocation={handleSetDefaultLocation} removeLocation={handleRemoveLocation}/>)}
+            {showTooltip && (<MenuLocationTooltip isCurrent={isCurrent} isDefault={isDefault} setShowTooltip={setShowTooltip} setDefaultLocation={handleSetDefaultLocation} removeLocation={handleRemoveLocation}/>)}
         </div>
     </li>
     
