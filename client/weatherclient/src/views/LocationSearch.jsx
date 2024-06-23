@@ -43,7 +43,7 @@ const LocationSearch = () => {
     }
 
     return (
-        <div className='absolute top-0 left-0 w-full h-full bg-slate-950 flex flex-col p-8'>
+        <div className='fixed top-0 left-0 w-full h-full bg-slate-950 flex flex-col p-8 z-50'>
             <div className='grid-cols-[1fr_auto] grid items-center gap-2'>
             <input 
                 className='w-full p-2 bg-transparent border border-slate-700 rounded-md text-white' 

@@ -49,21 +49,19 @@ const Forecast = () => {
                 </div>
             </div>
             {!isEmpty(forecast) &&
-                <div className='p-5 cursor-default'>
-                    <div className='flex flex-col my-20'>
+                <div className='p-8 cursor-default'>
+                    <div className='flex-col my-20 center-elements'>
                         <div className='flex items-center'>
                             <img className='h-10 w-max' src={forecast.current.condition.icon} alt="Weather icon"></img>
                             <h2 className='text-3xl font-extralight'>{forecast.current.condition.text}</h2>
                         </div>
-                        <div className='flex items-baseline'>
-                            <h3 className='text-9xl font-extralight flex items-start'>{units === 'Metric' ? forecast.current.temp_c : forecast.current.temp_f} <span className='text-4xl font-light'> °</span></h3>
-                            <p className='font-light'>Feels like {units === 'Metric' ? forecast.current.feelslike_c : forecast.current.feelslike_f}°</p>
-                        </div>
+                        <h3 className='text-9xl font-extralight flex items-start'>{units === 'Metric' ? forecast.current.temp_c : forecast.current.temp_f} <span className='text-4xl font-light'> °</span></h3>
+                        <p className='font-light text-sm mt-2'>Feels like {units === 'Metric' ? forecast.current.feelslike_c : forecast.current.feelslike_f}°</p>
                     </div>
                     <div className='flex flex-col w-full cursor-default'>
                         <div className='flex w-full items-center gap-3'>
                             <p className='font-extralight'>Details</p>
-                            <div className='w-full h-[1px] bg-slate-500'></div>
+                            <div className='w-full h-[1px] bg-white bg-opacity-50'></div>
                         </div>
                         <div className="grid grid-cols-3 gap-4 my-3">
                             <WeatherDetailContainer icon={WiBarometer} label="Pressure" value={`${units === 'Metric' ? forecast.current.pressure_mb : forecast.current.pressure_in} ${units === 'Metric' ? ' mb' : ' in'}`} />

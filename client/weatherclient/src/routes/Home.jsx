@@ -37,11 +37,14 @@ const Home = () => {
         }
     },[])
     return (
-    <div className="relative h-screen overflow-hidden">
-        <div className={`absolute top-0 left-0 h-full w-3/4 transform transition-transform duration-300 ${menu ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="relative h-screen overflow-hidden">
+        {/* Menu */}
+        <div className={`fixed top-0 left-0 h-full w-3/4 z-40 transform transition-transform duration-300 ${menu ? 'translate-x-0' : '-translate-x-full'}`}>
             <Menu />
         </div>
-        <div className={`h-full w-full transition-transform duration-300 ${menu ? 'translate-x-3/4' : ''}`}>
+
+        {/* Forecast */}
+        <div className={`h-full w-full transition-transform duration-300`}>
             <Forecast />
         </div>
         {searchOpen && <LocationSearch />}

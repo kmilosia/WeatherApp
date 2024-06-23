@@ -62,10 +62,10 @@ body{
     background: linear-gradient(180deg, rgba(117,127,154,1) 0%, rgba(215,221,232,1) 100%);
 }
 .sunny-day{
-    background: rgb(248,181,0);
-    background: -moz-linear-gradient(180deg, rgba(248,181,0,1) 0%, rgba(252,234,187,1) 100%);
-    background: -webkit-linear-gradient(180deg, rgba(248,181,0,1) 0%, rgba(252,234,187,1) 100%);
-    background: linear-gradient(180deg, rgba(248,181,0,1) 0%, rgba(252,234,187,1) 100%);
+    background: rgb(242,153,74);
+    background: -moz-linear-gradient(180deg, rgba(242,153,74,1) 0%, rgba(242,201,76,1) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(242,153,74,1) 0%, rgba(242,201,76,1) 100%);
+    background: linear-gradient(180deg, rgba(242,153,74,1) 0%, rgba(242,201,76,1) 100%);
 }
 .rainy-day{
     background: rgb(40,62,81);

@@ -5,21 +5,23 @@ import { useSearchStore } from '../store/searchStore';
 import useLocationStore from '../store/locationStore';
 import MenuLocationForecast from '../components/menu/MenuLocationForecast';
 import { useSettingsStore } from '../store/settingsStore';
+import { useMenuStore } from '../store/menuStore';
 
 const Menu = () => {
   const buttonStyle = 'mx-1 rounded-full p-1 hover:bg-slate-800'
   const setSearchOpen = useSearchStore((state) => state.toggleSearch)
-  const toggleSettings = useSettingsStore((state) => state.toggleSettings)
+  const {toggleSettings,scrollbarVisibility} = useSettingsStore()
   const {locations,defaultLocation,currentLocation} = useLocationStore()
+  const {toggleMenu} = useMenuStore()
   const filteredLocations = defaultLocation ? locations.filter(item => item !== defaultLocation) : locations
   
   return (
-    <div className='bg-slate-900 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-900'>
+    <div className={`backdrop-blur-md bg-white/10 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto ${scrollbarVisibility ? 'scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50' : 'scrollbar-none'}`}>
       <div className='flex w-full justify-between items-center mb-6'>
         <h1 className='text-3xl lg:text-4xl font-semibold cursor-default'>Manage locations</h1>
         <div className='flex'>
-          <button onClick={() => setSearchOpen()} className={buttonStyle}><IoSearch size={30}/></button>
-          <button onClick={() => toggleSettings()} className={buttonStyle}><LuSettings  size={30}/></button>
+          <button onClick={() => {toggleMenu(false);setSearchOpen()}} className={buttonStyle}><IoSearch size={30}/></button>
+          <button onClick={() => {toggleMenu(false);toggleSettings()}} className={buttonStyle}><LuSettings  size={30}/></button>
         </div>
       </div>
       {currentLocation && 
