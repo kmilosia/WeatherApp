@@ -7,5 +7,5 @@ export const useSettingsStore = create((set) => ({
   changeUnits: (newUnits) => {
     set({ units: newUnits })
     localStorage.setItem('units', newUnits)
-  }
+  },
 }))

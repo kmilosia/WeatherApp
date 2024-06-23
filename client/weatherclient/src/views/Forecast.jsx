@@ -69,7 +69,7 @@ const Forecast = () => {
         }
         <footer className='mt-4 mx-1 fixed bottom-2'>
           <p className='inline text-sm cursor-default'>Forecast by</p>
-          <a className='inline text-green-600 font-semibold text-sm hover:text-green-700' href="https://www.weatherapi.com/"> WeatherAPI.com</a>
+          <a target='_blank' className='inline text-green-600 font-semibold text-sm hover:text-green-700' href="https://www.weatherapi.com/"> WeatherAPI.com</a>
         </footer>
     </div>
   )

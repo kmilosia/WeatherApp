@@ -10,14 +10,13 @@ const UnitsSystemSetting = () => {
         const newUnits = units === 'Metric' ? 'Imperial' : 'Metric'
         changeUnits(newUnits)
         setIsChecked(!isChecked)
-        setText()
     }
     useEffect(() => {
         setText(isChecked ? 'Imperial system is on' : 'Metric system is on')
       }, [isChecked])
   return (
     <div className='flex justify-between items-center border-b border-slate-800 p-6'>
-        <p className='text-lg font-light'>Change units system</p>
+        <p className='text-lg font-light cursor-default'>Change units system</p>
         <ToggleSwitch text={text} action={toggleUnits} isChecked={isChecked}/>
     </div>
   )

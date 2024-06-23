@@ -3,6 +3,7 @@ import { useSettingsStore } from '../store/settingsStore'
 import { IoClose } from 'react-icons/io5'
 import ViewButton from '../components/ViewButton'
 import UnitsSystemSetting from '../components/settings/UnitsSystemSetting'
+import LocationPermissionSetting from '../components/settings/LocationPermissionSetting'
 
 const Settings = () => {
     const {toggleSettings} = useSettingsStore()
@@ -14,10 +15,7 @@ const Settings = () => {
         </div>
         <div className='border border-slate-800 rounded-md'>
         <UnitsSystemSetting />
-        <div className='flex justify-between items-center border-b border-slate-800 p-6'>
-            <p className='text-lg font-light'>Allow current location</p>
-            <p className='text-lg font-light'>Change units system</p>
-        </div>
+        <LocationPermissionSetting />
         </div>
     </div>
   )

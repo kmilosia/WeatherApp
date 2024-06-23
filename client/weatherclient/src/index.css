@@ -13,6 +13,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+    .settings-p{
+        @apply text-lg font-light cursor-default;
+    }
+}
 body{
     font-family: 'Poppins', sans-serif;
 }

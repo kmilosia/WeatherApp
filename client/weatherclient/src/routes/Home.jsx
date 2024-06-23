@@ -10,19 +10,24 @@ import { useForecastStore } from '../store/forecastStore';
 import { getLastLocationFromLocalStorage } from '../utils/storage';
 import { useSettingsStore } from '../store/settingsStore';
 import Settings from '../views/Settings';
+import useGeolocation from '../hooks/useGeolocation';
 
 const Home = () => {
     const { setForecast } = useForecastStore()
     const menu = useMenuStore((state) => state.menuOpen)
     const searchOpen = useSearchStore((state) => state.searchOpen)
     const settingsOpen = useSettingsStore((state) => state.settingsOpen)
-    const {defaultLocation, lastLocation, initializeLocations} = useLocationStore()
-    const { fetchForecastByCity } = useRetrieveForecast()
+    const {defaultLocation, lastLocation, initializeLocations, currentLocation} = useLocationStore()
+    const { fetchForecastByCity,fetchForecastByCoords } = useRetrieveForecast()
+    const { requestLocation } = useGeolocation()
     useEffect(() => {
+        requestLocation()
         initializeLocations()
         if(defaultLocation){
             fetchForecastByCity(defaultLocation, setForecast)
-        }else if(!defaultLocation && lastLocation){
+        }else if(!defaultLocation && currentLocation){
+            fetchForecastByCoords(currentLocation, setForecast)
+        }else if(!defaultLocation && !currentLocation && lastLocation){
             fetchForecastByCity(lastLocation, setForecast)
         }else{
             const location = getLastLocationFromLocalStorage()
