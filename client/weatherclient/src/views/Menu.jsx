@@ -16,7 +16,7 @@ const Menu = () => {
   const filteredLocations = defaultLocation ? locations.filter(item => item !== defaultLocation) : locations
   
   return (
-    <div className={`backdrop-blur-md bg-white/5 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto ${scrollbarVisibility ? 'scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50' : 'scrollbar-none'}`}>
+    <div className={`backdrop-blur-xl bg-black/30 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto ${scrollbarVisibility ? 'scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50' : 'scrollbar-none'}`}>
       <div className='flex w-full justify-between items-center mb-6'>
         <h1 className='text-3xl lg:text-4xl font-semibold cursor-default'>Manage locations</h1>
         <div className='flex'>

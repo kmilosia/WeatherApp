@@ -11,6 +11,7 @@ import { getLastLocationFromLocalStorage } from '../utils/storage';
 import { useSettingsStore } from '../store/settingsStore';
 import Settings from '../views/Settings';
 import useGeolocation from '../hooks/useGeolocation';
+import PopupStack from '../views/PopupStack';
 
 const Home = () => {
     const { setForecast } = useForecastStore()
@@ -46,6 +47,7 @@ const Home = () => {
         </div>
         {searchOpen && <LocationSearch />}
         {settingsOpen && <Settings />}
+        <PopupStack />
         
     </div>
     )
