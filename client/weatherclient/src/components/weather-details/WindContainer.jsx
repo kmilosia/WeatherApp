@@ -3,7 +3,6 @@ import DetailHeader from './DetailHeader'
 import { WiStrongWind } from 'react-icons/wi'
 import { useForecastStore } from '../../store/forecastStore'
 import { useSettingsStore } from '../../store/settingsStore'
-import { FaArrowDown, FaArrowLeft, FaArrowRight, FaArrowUp } from 'react-icons/fa6'
 
 const WindContainer = () => {
     const {forecast} = useForecastStore()
@@ -28,9 +27,8 @@ const WindContainer = () => {
         <DetailHeader title="Wind" icon={WiStrongWind} />
         <div className='flex text-5xl my-4 items-center'>
             <p className='mx-2'>{units === 'Metric' ? forecast.current.wind_kph : forecast.current.wind_mph}<span className='text-lg'>{units === 'Metric' ? ' km/h' : ' mi/h'}</span></p>
-            {forecast.current.wind_dir === 'N' ? <FaArrowUp className='text-3xl'/> : forecast.current.wind_dir === 'S' ? <FaArrowDown className='text-3xl'/> : forecast.current.wind_dir === 'E' ? <FaArrowRight className='text-3xl'/> : <FaArrowLeft className='text-3xl'/>}
         </div>
-        {windInfo && <p className='mt-2'>{windInfo}</p>}
+        {windInfo && <p className='mt-2'>{windInfo}. Wind direction {forecast.current.wind_dir}</p>}
     </div>
   )
 }

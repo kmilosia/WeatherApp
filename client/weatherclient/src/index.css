@@ -26,7 +26,7 @@
         @apply fixed top-0 left-0 w-full h-full bg-slate-950 flex flex-col text-white p-6 lg:p-8 z-50;
     }
     .detail-container{
-        @apply backdrop-blur-lg flex-col flex bg-white/10 rounded-md px-6 py-8;
+        @apply backdrop-blur-lg flex-col flex bg-white/10 rounded-md px-6 lg:px-8 py-8 lg:py-10;
     }
 }
 body{

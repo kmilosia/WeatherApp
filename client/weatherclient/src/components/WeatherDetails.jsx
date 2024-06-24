@@ -8,7 +8,7 @@ import WindContainer from './weather-details/WindContainer'
 
 const WeatherDetails = () => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 my-3">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 my-3">
         <PressureContainer />
         <UVContainer />
         <HumidityContainer />
