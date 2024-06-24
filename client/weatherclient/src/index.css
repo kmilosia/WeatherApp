@@ -17,6 +17,9 @@
     .settings-p{
         @apply text-lg font-light cursor-default;
     }
+    .icon-size{
+        @apply text-2xl lg:text-3xl;
+    }
 }
 body{
     font-family: 'Poppins', sans-serif;
@@ -36,3 +39,4 @@ body{
     justify-content: center;
     align-items: center;
 }
+

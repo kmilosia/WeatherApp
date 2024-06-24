@@ -21,6 +21,7 @@ const Home = () => {
     const {defaultLocation, lastLocation, initializeLocations, currentLocation} = useLocationStore()
     const { fetchForecastByCity,fetchForecastByCoords } = useRetrieveForecast()
     const { requestLocation } = useGeolocation()
+
     useEffect(() => {
         requestLocation()
         initializeLocations()
@@ -39,7 +40,7 @@ const Home = () => {
     },[])
     return (
     <div className="relative h-screen overflow-hidden">
-        <div className={`fixed top-0 left-0 h-full w-3/4 z-40 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className={`fixed top-0 left-0 h-full w-full lg:w-3/4 z-40 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
             <Menu />
         </div>
         <div className={`h-full w-full transition-transform duration-300`}>

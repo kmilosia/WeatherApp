@@ -1,27 +1,26 @@
 import React from 'react'
-import { IoSearch } from 'react-icons/io5'
+import { IoSearch, IoClose } from 'react-icons/io5'
 import { LuSettings } from "react-icons/lu";
 import { useSearchStore } from '../store/searchStore';
 import useLocationStore from '../store/locationStore';
 import MenuLocationForecast from '../components/menu/MenuLocationForecast';
 import { useSettingsStore } from '../store/settingsStore';
-import { useMenuStore } from '../store/menuStore';
+import MenuButton from '../components/menu/MenuButton';
 
 const Menu = () => {
-  const buttonStyle = 'mx-1 rounded-full p-1 hover:bg-blue-900'
   const setSearchOpen = useSearchStore((state) => state.toggleSearch)
-  const {toggleSettings,scrollbarVisibility} = useSettingsStore()
-  const {locations,defaultLocation,currentLocation} = useLocationStore()
-  const {toggleMenu} = useMenuStore()
+  const { toggleSettings, scrollbarVisibility } = useSettingsStore()
+  const { locations, defaultLocation, currentLocation } = useLocationStore()
   const filteredLocations = defaultLocation ? locations.filter(item => item !== defaultLocation) : locations
   
   return (
-    <div className={`backdrop-blur-xl bg-black/30 text-gray-100 flex flex-col p-8 h-full w-full overflow-auto ${scrollbarVisibility ? 'scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50' : 'scrollbar-none'}`}>
+    <div className={`backdrop-blur-xl bg-black/30 text-gray-100 flex flex-col p-6 lg:p-8 h-full w-full overflow-auto ${scrollbarVisibility ? 'scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50' : 'scrollbar-none'}`}>
       <div className='flex w-full justify-between items-center mb-6'>
-        <h1 className='text-3xl lg:text-4xl font-semibold cursor-default'>Manage locations</h1>
+        <h1 className='text-2xl lg:text-4xl font-semibold cursor-default'>Manage locations</h1>
         <div className='flex'>
-          <button onClick={() => {toggleMenu(false);setSearchOpen()}} className={buttonStyle}><IoSearch size={30}/></button>
-          <button onClick={() => {toggleMenu(false);toggleSettings()}} className={buttonStyle}><LuSettings  size={30}/></button>
+          <MenuButton action={setSearchOpen} icon={IoSearch} />
+          <MenuButton action={toggleSettings} icon={LuSettings} />
+          <MenuButton icon={IoClose} closeButton={true}/>
         </div>
       </div>
       {currentLocation && 

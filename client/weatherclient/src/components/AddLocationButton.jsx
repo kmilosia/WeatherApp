@@ -7,7 +7,7 @@ import usePopupStore from '../store/popupStore';
 
 const AddLocationButton = () => {
   const addPopup = usePopupStore((state) => state.addPopup)
-  const { addLocation,removeLocation } = useLocationStore()
+  const { addLocation, removeLocation } = useLocationStore()
   const forecast = useForecastStore((state) => state.forecast)
   const exists = checkCityExists(forecast.location.name)
 
@@ -23,7 +23,7 @@ const AddLocationButton = () => {
 
   return (
     <button onClick={handleLocation}>
-      {!exists ? <HiPlus size={30} /> : <HiMinus size={30}/>}
+      {!exists ? <HiPlus className='icon-size' /> : <HiMinus className='icon-size'/>}
     </button>
     
   );
