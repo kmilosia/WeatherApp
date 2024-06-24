@@ -3,7 +3,7 @@ import usePopupStore from '../store/popupStore';
 import Popup from '../components/Popup';
 
 const PopupStack = () => {
-    const popups = usePopupStore((state) => state.popups);
+    const popups = usePopupStore((state) => state.popups)
   return (
     <div className='w-full h-full fixed top-0 left-0 flex p-2 justify-center items-end pointer-events-none'>
         <div className='flex flex-col w-full gap-2'>

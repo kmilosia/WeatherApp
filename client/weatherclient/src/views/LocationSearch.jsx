@@ -5,7 +5,6 @@ import useCities from '../hooks/useCities'
 import useRetrieveForecast from '../hooks/useRetrieveForecast'
 import { useForecastStore } from '../store/forecastStore'
 import useLocationStore from '../store/locationStore'
-import ViewButton from '../components/ViewButton'
 import ModalScreenHeader from '../components/ModalScreenHeader'
 
 const LocationSearch = () => {
@@ -57,16 +56,11 @@ const LocationSearch = () => {
                     />
                     {query && <div className='center-elements h-full absolute right-0 top-0 px-2'> <button onClick={handleClearInput} className='text-white'><IoClose className='text-xl lg:text-2xl'/></button></div>}
                 </div>
-            
             </div>
             {suggestions.length > 0 && (
                 <ul className='text-white mt-2 bg-slate-800 rounded-md lg:text-lg'>
                     {suggestions.map((suggestion, index) => (
-                        <li
-                            key={index}
-                            className='p-3 rounded-md hover:bg-slate-900 cursor-pointer'
-                            onClick={() => handleSuggestionClick(suggestion.city)}
-                        >
+                        <li key={index} className='p-3 rounded-md hover:bg-slate-900 cursor-pointer' onClick={() => handleSuggestionClick(suggestion.city)}>
                             {suggestion.city}, {suggestion.country}
                         </li>
                     ))}
