@@ -12,7 +12,7 @@ import { useSettingsStore } from '../store/settingsStore';
 
 const Forecast = () => {
     const { menuOpen, toggleMenu } = useMenuStore()
-    const { units } = useSettingsStore()
+    const { units,scrollbarVisibility } = useSettingsStore()
     const {dateString,forecast,backgroundURL,backgroundText} = useForecastStore()
     const dayOfWeek = useWeekDay(dateString)
     const time = useTimeFormat(dateString)
@@ -21,13 +21,13 @@ const Forecast = () => {
     }
 
     return (
-        <div onClick={checkMenuToggle} className=' h-screen w-screen p-8 text-white' 
+        <div onClick={checkMenuToggle} className={`h-screen w-screen p-8 text-white overflow-auto ${scrollbarVisibility ? 'scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50' : 'scrollbar-none'}`}
         style={{
             backgroundImage: `url(${backgroundURL})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
             backgroundBlendMode: 'overlay'
         }}>
             <div className='w-full flex justify-between'>
@@ -72,7 +72,7 @@ const Forecast = () => {
                     </div>
                 </div>
             }
-            <footer className='mt-4 mx-1 fixed bottom-2 left-2 flex justify-between w-[98%]'>
+            <footer className=' flex justify-between mt-6'>
                 <div className='flex items-center'>
                     <p className='inline text-sm cursor-default mr-1 text-white/50'>Forecast by </p>
                     <a target='_blank' className='inline text-green-600/50 font-semibold text-sm hover:text-green-500/50' href="https://www.weatherapi.com/"> WeatherAPI.com</a>
