@@ -10,6 +10,7 @@ import { WiRaindrops, WiStrongWind, WiCloudy, WiBarometer, WiShowers, WiDaySunny
 import WeatherDetailContainer from '../components/WeatherDetailContainer';
 import { useSettingsStore } from '../store/settingsStore';
 import Footer from '../components/Footer';
+import WeatherDetails from '../components/WeatherDetails';
 
 const Forecast = () => {
     const { menuOpen, toggleMenu } = useMenuStore()
@@ -22,7 +23,7 @@ const Forecast = () => {
     }
 
     return (
-        <div onClick={checkMenuToggle} className={`h-screen w-screen bg-black/40 bg-cover bg-center bg-no-repeat bg-blend-overlay p-6 lg:p-8 text-white overflow-auto ${scrollbarVisibility ? 'scrollbar-default' : 'scrollbar-none'}`} style={{ backgroundImage: `url(${backgroundURL})`}}>
+        <div onClick={checkMenuToggle} className={`h-screen w-screen bg-black/50 bg-cover bg-center bg-no-repeat bg-blend-overlay p-6 lg:p-8 text-white overflow-auto ${scrollbarVisibility ? 'scrollbar-default' : 'scrollbar-none'}`} style={{ backgroundImage: `url(${backgroundURL})`}}>
             <div className='w-full flex justify-between'>
                 <button onClick={(e) => { e.stopPropagation(); toggleMenu() }} className='text-white center-elements h-max'>
                     <IoMenu className='icon-size' />
@@ -52,14 +53,7 @@ const Forecast = () => {
                             <p className='font-extralight'>Details</p>
                             <div className='w-full h-[1px] bg-white/30'></div>
                         </div>
-                        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 my-3">
-                            <WeatherDetailContainer icon={WiBarometer} label="Pressure" value={`${units === 'Metric' ? forecast.current.pressure_mb : forecast.current.pressure_in} ${units === 'Metric' ? ' mb' : ' in'}`} />
-                            <WeatherDetailContainer icon={WiCloudy} label="Cloud" value={`${forecast.current.cloud}%`} />
-                            <WeatherDetailContainer icon={WiDaySunny} label="UV Index" value={forecast.current.uv} />
-                            <WeatherDetailContainer icon={WiRaindrops} label="Humidity" value={`${forecast.current.humidity}%`} />
-                            <WeatherDetailContainer icon={WiShowers} label="Precipitation" value={`${units === 'Metric' ? forecast.current.precip_mm : forecast.current.precip_in}${units === 'Metric' ? ' mm' : ' in'}`} />
-                            <WeatherDetailContainer icon={WiStrongWind} label="Wind" value={`${units === 'Metric' ? forecast.current.wind_kph : forecast.current.wind_mph}${units === 'Metric' ? ' km/h' : ' mi/h'}`} />
-                        </div>
+                        <WeatherDetails />
                     </div>
                 </div>
             }

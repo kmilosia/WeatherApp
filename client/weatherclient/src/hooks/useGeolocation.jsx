@@ -1,11 +1,10 @@
 import useLocationStore from '../store/locationStore';
 
 const useGeolocation = () => {
-    const { clearCurrentLocation, setCurrentLocation } = useLocationStore();
-
+    const { clearCurrentLocation, setCurrentLocation } = useLocationStore()
     const requestLocation = () => {
         if (!navigator.geolocation) {
-            console.log("Geolocation not supported");
+            console.log("Geolocation not supported")
             return;
         }
         navigator.permissions.query({ name: 'geolocation' }).then((result) => {
@@ -18,8 +17,7 @@ const useGeolocation = () => {
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude,
                         })
-                    },
-                    
+                    },                  
                 )
             }
         })
