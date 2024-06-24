@@ -20,6 +20,12 @@
     .icon-size{
         @apply text-2xl lg:text-3xl;
     }
+    .scrollbar-default{
+        @apply scrollbar-thin scrollbar-thumb-white/25 scrollbar-track-white/50;
+    }
+    .modal-screen{
+        @apply fixed top-0 left-0 w-full h-full bg-slate-950 flex flex-col text-white p-6 lg:p-8 z-50;
+    }
 }
 body{
     font-family: 'Poppins', sans-serif;

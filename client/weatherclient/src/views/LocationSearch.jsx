@@ -3,16 +3,15 @@ import { IoClose } from "react-icons/io5"
 import { useSearchStore } from '../store/searchStore'
 import useCities from '../hooks/useCities'
 import useRetrieveForecast from '../hooks/useRetrieveForecast'
-import { useMenuStore } from '../store/menuStore'
 import { useForecastStore } from '../store/forecastStore'
 import useLocationStore from '../store/locationStore'
 import ViewButton from '../components/ViewButton'
+import ModalScreenHeader from '../components/ModalScreenHeader'
 
 const LocationSearch = () => {
     const {setLastLocation} = useLocationStore()
     const { setForecast } = useForecastStore()
     const setSearchOpen = useSearchStore((state) => state.toggleSearch)
-    const setMenu = useMenuStore((state) => state.toggleMenu)
     const { fetchedData } = useCities()
     const { fetchForecastByCity } = useRetrieveForecast()
     const [query, setQuery] = useState('')
@@ -40,20 +39,28 @@ const LocationSearch = () => {
         setLastLocation(cityName)
         setSearchOpen()
     }
+    const handleClearInput = () => {
+        setQuery('')
+        setSuggestions([])
+    }
 
     return (
-        <div className='fixed top-0 left-0 w-full h-full bg-slate-950 flex flex-col p-8 z-50'>
-            <div className='grid-cols-[1fr_auto] grid items-center gap-2'>
-            <input 
-                className='w-full p-2 bg-transparent border border-slate-700 rounded-md text-white' 
-                placeholder='Search by city name'
-                value={query}
-                onChange={handleInputChange}
-            />
-            <ViewButton icon={IoClose} action={setSearchOpen} />
+        <div className='modal-screen'>
+            <div className='flex flex-col'>
+                <ModalScreenHeader title="Search locations" action={setSearchOpen}/>
+                <div className='flex relative'>
+                    <input 
+                    className='w-full p-2 lg:p-3 bg-transparent border border-slate-700 rounded-md text-white lg:text-lg' 
+                    placeholder='Search by city name..'
+                    value={query}
+                    onChange={handleInputChange}
+                    />
+                    {query && <div className='center-elements h-full absolute right-0 top-0 px-2'> <button onClick={handleClearInput} className='text-white'><IoClose className='text-xl lg:text-2xl'/></button></div>}
+                </div>
+            
             </div>
             {suggestions.length > 0 && (
-                <ul className='text-white mt-2 bg-slate-800 rounded-md'>
+                <ul className='text-white mt-2 bg-slate-800 rounded-md lg:text-lg'>
                     {suggestions.map((suggestion, index) => (
                         <li
                             key={index}

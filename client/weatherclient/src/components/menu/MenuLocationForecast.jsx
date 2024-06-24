@@ -60,7 +60,7 @@ const MenuLocationForecast = ({item = null, isDefault, isCurrent}) => {
     }, [defaultLocation,currentLocation, item])
   return ( 
     !isEmpty(localForecast) && 
-    <li className='center-elements gap-4 w-full my-2'>
+    <li className='center-elements gap-2 lg:gap-4 w-full my-2'>
         <div onClick={() => {handleChangeCurrentLocation(localForecast.location.name)}} className='w-full rounded-md bg-black/20 py-6 px-5 font-light text-xl flex justify-between items-center hover:bg-blue-900 cursor-pointer'>
             <div className='flex flex-col'>
                 <h1 className='font-light flex items-center gap-2 text-lg lg:text-xl'>{isCurrent && <FaLocationDot className='mb-1 lg:mb-0' size={12}/>}{localForecast.location.name}</h1>
