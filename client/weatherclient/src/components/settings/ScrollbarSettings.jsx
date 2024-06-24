@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSettingsStore } from '../../store/settingsStore'
-import ToggleSwitch from '../ToggleSwitch'
+import SettingContainer from './SettingContainer'
 
 const ScrollbarSettings = () => {
     const { scrollbarVisibility,toggleScrollbar} = useSettingsStore()
@@ -14,10 +14,7 @@ const ScrollbarSettings = () => {
         setText(isChecked ? 'Visible' : 'Hidden')
       }, [isChecked])
   return (
-    <div className='flex justify-between items-center border-b border-slate-800 p-6'>
-        <p className='text-lg font-light cursor-default'>Change scrollbar visibility</p>
-        <ToggleSwitch text={text} action={toggleScrollbarVisibility} isChecked={isChecked}/>
-    </div>
+    <SettingContainer text={text} action={toggleScrollbarVisibility} isChecked={isChecked} title="Change scrollbar visibility" />
   )
 }
 

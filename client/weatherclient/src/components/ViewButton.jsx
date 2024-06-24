@@ -5,7 +5,7 @@ const ViewButton = ({action, icon: Icon}) => {
     <button 
         onClick={() => action()} 
         className='text-white w-max'>
-        <Icon size={30} />
+        <Icon className='icon-size' />
     </button>
   )
 }
