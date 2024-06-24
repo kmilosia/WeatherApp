@@ -23,7 +23,7 @@ const Forecast = () => {
     }
 
     return (
-        <div onClick={checkMenuToggle} className={`h-screen w-screen bg-black/50 bg-cover bg-center bg-no-repeat bg-blend-overlay p-6 lg:p-8 text-white overflow-auto ${scrollbarVisibility ? 'scrollbar-default' : 'scrollbar-none'}`} style={{ backgroundImage: `url(${backgroundURL})`}}>
+        <div onClick={checkMenuToggle} className={`h-screen w-screen flex flex-col bg-black/50 bg-cover bg-center bg-no-repeat bg-blend-overlay p-6 lg:p-8 text-white overflow-auto ${scrollbarVisibility ? 'scrollbar-default' : 'scrollbar-none'}`} style={{ backgroundImage: `url(${backgroundURL})`}}>
             <div className='w-full flex justify-between'>
                 <button onClick={(e) => { e.stopPropagation(); toggleMenu() }} className='text-white center-elements h-max'>
                     <IoMenu className='icon-size' />
@@ -48,7 +48,7 @@ const Forecast = () => {
                         <h3 className='text-8xl lg:text-9xl font-extralight flex items-start'>{units === 'Metric' ? forecast.current.temp_c : forecast.current.temp_f} <span className='text-4xl font-light'> °</span></h3>
                         <p className='font-light mt-2'>Feels like {units === 'Metric' ? forecast.current.feelslike_c : forecast.current.feelslike_f}°</p>
                     </div>
-                    <div className='flex flex-col cursor-default w-full lg:w-2/3'>
+                    <div className='flex flex-col cursor-default w-full lg:w-2/3 mb-4'>
                         <div className='flex w-full items-center gap-3'>
                             <p className='font-extralight'>Details</p>
                             <div className='w-full h-[1px] bg-white/30'></div>

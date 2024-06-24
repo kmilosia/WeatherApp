@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { WiRaindrops } from 'react-icons/wi'
 import { useForecastStore } from '../../store/forecastStore'
 import { useSettingsStore } from '../../store/settingsStore'
-import UnitsDegreeSpan from '../UnitsDegreesSpan'
 import DetailHeader from './DetailHeader'
 
 const HumidityContainer = () => {
@@ -12,13 +11,13 @@ const HumidityContainer = () => {
     useEffect(() => {
         const value = forecast.current.dewpoint_f
         if(value < 60){
-            setHumidityInfo("It feels pleasant outside")
+            setHumidityInfo("Pleasant outside")
         }else if(value >= 60 && value <= 65){
-            setHumidityInfo("It can feel a bit sticky outside")
+            setHumidityInfo("Sticky outside")
         }else if(value > 65 && value <= 70){
-            setHumidityInfo("It feels very humid outside")
+            setHumidityInfo("Humid outside")
         }else{
-            setHumidityInfo("It's tropical conditions outside")
+            setHumidityInfo("Tropical outside")
         }
     },[forecast])
   return (
@@ -27,7 +26,7 @@ const HumidityContainer = () => {
          <div className='flex text-5xl my-4 items-center'>
             <p className='mx-2'>{forecast.current.humidity}%</p>
         </div>
-        {humidityInfo && <p className='mt-auto'>The dew point is {units === 'metric' ? forecast.current.dewpoint_c : forecast.current.dewpoint_f}°. {humidityInfo}</p>}
+        {humidityInfo && <p className='mt-auto'>Dew point {units === 'metric' ? forecast.current.dewpoint_c : forecast.current.dewpoint_f}°. {humidityInfo}</p>}
     </div>
   )
 }
