@@ -6,24 +6,19 @@ import { isEmpty } from '../utils/isEmpty';
 import useWeekDay from '../hooks/useWeekDay';
 import useTimeFormat from '../hooks/useTimeFormat';
 import AddLocationButton from '../components/AddLocationButton';
-import { WiRaindrops, WiStrongWind, WiCloudy, WiBarometer, WiShowers, WiDaySunny } from "react-icons/wi";
-import WeatherDetailContainer from '../components/WeatherDetailContainer';
 import { useSettingsStore } from '../store/settingsStore';
 import Footer from '../components/Footer';
 import WeatherDetails from '../components/WeatherDetails';
 
 const Forecast = () => {
-    const { menuOpen, toggleMenu } = useMenuStore()
+    const { toggleMenu, closeMenu } = useMenuStore()
     const { units,scrollbarVisibility } = useSettingsStore()
     const {dateString,forecast,backgroundURL,backgroundText} = useForecastStore()
     const dayOfWeek = useWeekDay(dateString)
     const time = useTimeFormat(dateString)
-    const checkMenuToggle = () => {
-        if (menuOpen) toggleMenu()
-    }
 
     return (
-        <div onClick={checkMenuToggle} className={`h-screen w-screen flex flex-col bg-black/50 bg-cover bg-center bg-no-repeat bg-blend-overlay p-6 lg:p-8 text-white overflow-auto ${scrollbarVisibility ? 'scrollbar-default' : 'scrollbar-none'}`} style={{ backgroundImage: `url(${backgroundURL})`}}>
+        <div onClick={() => closeMenu()} className={`h-screen w-screen flex flex-col bg-black/50 bg-cover bg-center bg-no-repeat bg-blend-overlay p-6 lg:p-8 text-white overflow-auto ${scrollbarVisibility ? 'scrollbar-default' : 'scrollbar-none'}`} style={{ backgroundImage: `url(${backgroundURL})`}}>
             <div className='w-full flex justify-between'>
                 <button onClick={(e) => { e.stopPropagation(); toggleMenu() }} className='text-white center-elements h-max'>
                     <IoMenu className='icon-size' />

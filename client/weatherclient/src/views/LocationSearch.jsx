@@ -19,12 +19,10 @@ const LocationSearch = () => {
     const handleInputChange = (event) => {
         const inputQuery = event.target.value.toLowerCase()
         setQuery(inputQuery)
-
         if (inputQuery.length < 3) {
             setSuggestions([])
             return
         }
-
         const matchedCities = fetchedData.flatMap(country =>
             country.cities
                 .filter(city => city.toLowerCase().includes(inputQuery))
@@ -32,7 +30,6 @@ const LocationSearch = () => {
         )
         setSuggestions(matchedCities)
     }
-
     const handleSuggestionClick = (cityName) => {
         fetchForecastByCity(cityName, setForecast)
         setLastLocation(cityName)
