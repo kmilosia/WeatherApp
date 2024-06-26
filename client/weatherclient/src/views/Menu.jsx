@@ -18,9 +18,9 @@ const Menu = () => {
       <div className='flex w-full justify-between items-center mb-6'>
         <h1 className='text-2xl lg:text-4xl font-semibold cursor-default'>Manage locations</h1>
         <div className='flex'>
-          <MenuButton action={setSearchOpen} icon={IoSearch} />
-          <MenuButton action={toggleSettings} icon={LuSettings} />
-          <MenuButton icon={IoClose} closeButton={true}/>
+          <MenuButton action={setSearchOpen} icon={IoSearch} testID="search-menu-btn"/>
+          <MenuButton action={toggleSettings} icon={LuSettings} testID="settings-menu-btn"/>
+          <MenuButton icon={IoClose} closeButton={true} testID="close-menu-btn"/>
         </div>
       </div>
       {currentLocation && 

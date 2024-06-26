@@ -20,7 +20,7 @@ const Forecast = () => {
     return (
         <div onClick={() => closeMenu()} className={`h-screen w-screen flex flex-col bg-black/50 bg-cover bg-center bg-no-repeat bg-blend-overlay p-6 lg:p-8 text-white overflow-auto ${scrollbarVisibility ? 'scrollbar-default' : 'scrollbar-none'}`} style={{ backgroundImage: `url(${backgroundURL})`}}>
             <div className='w-full flex justify-between'>
-                <button onClick={(e) => { e.stopPropagation(); toggleMenu() }} className='text-white center-elements h-max'>
+                <button data-testid="toggle-menu-btn" onClick={(e) => { e.stopPropagation(); toggleMenu() }} className='text-white center-elements h-max'>
                     <IoMenu className='icon-size' />
                 </button>
                 {!isEmpty(forecast) &&

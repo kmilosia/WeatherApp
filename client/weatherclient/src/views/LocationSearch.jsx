@@ -51,7 +51,7 @@ const LocationSearch = () => {
                 <div className='flex relative'>
                     <input 
                     className='w-full p-2 lg:p-3 bg-transparent border border-slate-700 rounded-md text-white lg:text-lg' 
-                    placeholder='Search by city name..'
+                    placeholder='Search by city name...'
                     value={query}
                     ref={inputRef}
                     onChange={handleInputChange}

@@ -40,7 +40,7 @@ const Home = () => {
     },[])
     return (
     <div className="relative h-screen overflow-hidden">
-        <div className={`fixed top-0 left-0 h-full w-full lg:w-4/6 z-40 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div data-testid="menu-div" className={`fixed top-0 left-0 h-full w-full lg:w-4/6 z-40 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
             <Menu />
         </div>
         <div className={`h-full w-full transition-transform duration-300`}>
