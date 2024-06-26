@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { IoClose } from "react-icons/io5"
 import { useSearchStore } from '../store/searchStore'
 import useCities from '../hooks/useCities'
@@ -13,6 +13,7 @@ const LocationSearch = () => {
     const setSearchOpen = useSearchStore((state) => state.toggleSearch)
     const { fetchedData } = useCities()
     const { fetchForecastByCity } = useRetrieveForecast()
+    const inputRef = useRef()
     const [query, setQuery] = useState('')
     const [suggestions, setSuggestions] = useState([])
 
@@ -38,8 +39,11 @@ const LocationSearch = () => {
     const handleClearInput = () => {
         setQuery('')
         setSuggestions([])
+        inputRef.current.focus()
     }
-
+    useEffect(() => {
+        inputRef.current.focus()
+    },[])
     return (
         <div className='modal-screen'>
             <div className='flex flex-col'>
@@ -49,6 +53,7 @@ const LocationSearch = () => {
                     className='w-full p-2 lg:p-3 bg-transparent border border-slate-700 rounded-md text-white lg:text-lg' 
                     placeholder='Search by city name..'
                     value={query}
+                    ref={inputRef}
                     onChange={handleInputChange}
                     />
                     {query && <div className='center-elements h-full absolute right-0 top-0 px-2'> <button onClick={handleClearInput} className='text-white'><IoClose className='text-xl lg:text-2xl'/></button></div>}
