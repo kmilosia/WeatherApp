@@ -47,16 +47,17 @@ const LocationSearch = () => {
     return (
         <div className='modal-screen'>
             <div className='flex flex-col'>
-                <ModalScreenHeader title="Search locations" action={setSearchOpen}/>
+                <ModalScreenHeader testID="search-close-btn" title="Search locations" action={setSearchOpen}/>
                 <div className='flex relative'>
                     <input 
+                    type='text'
                     className='w-full p-2 lg:p-3 bg-transparent border border-slate-700 rounded-md text-white lg:text-lg' 
                     placeholder='Search by city name...'
                     value={query}
                     ref={inputRef}
                     onChange={handleInputChange}
                     />
-                    {query && <div className='center-elements h-full absolute right-0 top-0 px-2'> <button onClick={handleClearInput} className='text-white'><IoClose className='text-xl lg:text-2xl'/></button></div>}
+                    {query && <div className='center-elements h-full absolute right-0 top-0 px-2'> <button data-testid="clear-input-btn" onClick={handleClearInput} className='text-white'><IoClose className='text-xl lg:text-2xl'/></button></div>}
                 </div>
             </div>
             {suggestions.length > 0 && (

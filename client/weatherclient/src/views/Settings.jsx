@@ -8,7 +8,7 @@ const Settings = () => {
     const {toggleSettings} = useSettingsStore()
   return (
     <div className='modal-screen'>
-        <ModalScreenHeader testID="settings-btn" title="Settings" action={toggleSettings}/>
+        <ModalScreenHeader testID="settings-close-btn" title="Settings" action={toggleSettings}/>
         <div className='border border-slate-800 rounded-md'>
           <UnitsSystemSetting />
           <ScrollbarSettings />
