@@ -8,7 +8,7 @@ jest.mock('../store/settingsStore', () => ({
   }))
 
 describe("ScrollbarSettings", () => {
-    let store
+  let store
 
   test("toggle scrollbar visibility in store to true", () => {
     store = {

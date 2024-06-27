@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { isEmpty } from '../../utils/isEmpty';
-import useRetrieveForecast from '../../hooks/useRetrieveForecast';
 import { useMenuStore } from '../../store/menuStore';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import useLocationStore from '../../store/locationStore';
@@ -11,6 +10,7 @@ import useWeekDay from '../../hooks/useWeekDay';
 import useTimeFormat from '../../hooks/useTimeFormat';
 import { useSettingsStore } from '../../store/settingsStore';
 import UnitsDegreesSpan from '../UnitsDegreesSpan';
+import { fetchForecastByCity, fetchForecastByCoords } from '../../utils/fetchForecast';
 
 const MenuLocationForecast = ({item = null, isDefault, isCurrent}) => {
     const [localForecast, setLocalForecast] = useState({})
@@ -19,7 +19,6 @@ const MenuLocationForecast = ({item = null, isDefault, isCurrent}) => {
     const {units} = useSettingsStore()
     const {setLastLocation, setDefaultLocation, removeLocation,defaultLocation, clearDefaultLocation, currentLocation} = useLocationStore()
     const toggleMenu = useMenuStore((state) => state.toggleMenu)
-    const { fetchForecastByCity,fetchForecastByCoords } = useRetrieveForecast()
     const tooltipRef = useRef(null)
     const dateString = localForecast?.location?.localtime || ''
     const dayOfWeek = useWeekDay(dateString)

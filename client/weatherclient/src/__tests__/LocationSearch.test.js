@@ -1,7 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import '@testing-library/jest-dom'
 import LocationSearch from "../views/LocationSearch"
-import useRetrieveForecast from "../hooks/useRetrieveForecast";
 
 jest.mock('../hooks/useCities', () => ({
     __esModule: true,
@@ -12,14 +11,19 @@ jest.mock('../hooks/useCities', () => ({
       ],
     }),
   }))
-//   jest.mock('../hooks/useRetrieveForecast', () => ({
-//     __esModule: true,
-//     default: () => ({
-//       fetchForecastByCity: jest.fn(),
-//     }),
-//   }));
+  jest.mock('../utils/fetchForecast', () => ({
+    fetchForecastByCity: jest.fn(),
+  }))
 
 describe("LocationSearch", () => {
+    test("should call fetchForecastByCity when suggestion is clicked", async () => {
+        render(<LocationSearch />)
+        const inputField = screen.getByPlaceholderText(/Search by city name.../i)
+        fireEvent.change(inputField, { target: { value: 'Mad' } })
+        const suggestionElement = screen.getByText('Madrid, Spain')
+        fireEvent.click(suggestionElement)
+        expect(require('../utils/fetchForecast').fetchForecastByCity).toHaveBeenCalledWith('Madrid', expect.any(Function))   
+    })
     test("input is rendered and focused on render", async () => {
         render(<LocationSearch />)
         const inputElement = screen.getByPlaceholderText(/Search by city name.../i)
@@ -56,17 +60,5 @@ describe("LocationSearch", () => {
             expect(inputElement.value).toBe("")
         })
     })
-    // test("clicking on a suggestion fetches city forecast", async () => {
-    //     render(<LocationSearch />);
-    //     const inputElement = screen.getByPlaceholderText(/Search by city name.../i);
-    //     fireEvent.change(inputElement, { target: { value: 'Warsaw' } });
-
-    //     await waitFor(() => {
-    //         expect(screen.getByText('Warsaw, Poland')).toBeInTheDocument();
-    //     });
-    //     fireEvent.click(screen.getByText('Warsaw, Poland'));
-    //     await waitFor(() => {
-    //         expect(useRetrieveForecast().fetchForecastByCity).toHaveBeenCalledWith('Warsaw', expect.any(Function));
-    //     });
-    // });
+  
 })

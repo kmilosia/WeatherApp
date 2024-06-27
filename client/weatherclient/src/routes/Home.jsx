@@ -5,13 +5,13 @@ import Forecast from '../views/Forecast';
 import LocationSearch from '../views/LocationSearch';
 import { useSearchStore } from '../store/searchStore';
 import useLocationStore from '../store/locationStore';
-import useRetrieveForecast from '../hooks/useRetrieveForecast';
 import { useForecastStore } from '../store/forecastStore';
 import { getLastLocationFromLocalStorage } from '../utils/storage';
 import { useSettingsStore } from '../store/settingsStore';
 import Settings from '../views/Settings';
 import useGeolocation from '../hooks/useGeolocation';
 import PopupStack from '../views/PopupStack';
+import { fetchForecastByCity, fetchForecastByCoords } from '../utils/fetchForecast';
 
 const Home = () => {
     const { setForecast } = useForecastStore()
@@ -19,7 +19,6 @@ const Home = () => {
     const searchOpen = useSearchStore((state) => state.searchOpen)
     const settingsOpen = useSettingsStore((state) => state.settingsOpen)
     const {defaultLocation, lastLocation, initializeLocations, currentLocation} = useLocationStore()
-    const { fetchForecastByCity,fetchForecastByCoords } = useRetrieveForecast()
     const { requestLocation } = useGeolocation()
 
     useEffect(() => {

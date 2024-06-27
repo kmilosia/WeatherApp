@@ -2,17 +2,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import { IoClose } from "react-icons/io5"
 import { useSearchStore } from '../store/searchStore'
 import useCities from '../hooks/useCities'
-import useRetrieveForecast from '../hooks/useRetrieveForecast'
 import { useForecastStore } from '../store/forecastStore'
 import useLocationStore from '../store/locationStore'
 import ModalScreenHeader from '../components/ModalScreenHeader'
+import { fetchForecastByCity } from '../utils/fetchForecast'
 
 const LocationSearch = () => {
     const {setLastLocation} = useLocationStore()
     const { setForecast } = useForecastStore()
     const setSearchOpen = useSearchStore((state) => state.toggleSearch)
     const { fetchedData } = useCities()
-    const { fetchForecastByCity } = useRetrieveForecast()
     const inputRef = useRef()
     const [query, setQuery] = useState('')
     const [suggestions, setSuggestions] = useState([])
